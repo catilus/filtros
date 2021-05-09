@@ -20,15 +20,15 @@
 <p>
   Load image:
   
-<input type="file" multiple="false" accept="images/*" id="ogimage" onchange="loadImage()" />
+<input type="file" multiple="false" accept="images/*" id="ogimage" value="Load image" onchange="loadImage()" />
 </p>
 
 <p>
   Apply filters:
   
   <input type="button" onclick="makeGray()" value="Grayscale"/>
-  
   <input type="button" id="red" onclick="makeRed()" value="Red"/>
+  <input type="button" id="rainbow" onclick="makeRainbow()" value="Rainbow"/>
 </p>
 
 <p>
