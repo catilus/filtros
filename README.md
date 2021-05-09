@@ -1,2 +1,2 @@
 # filtros
-Image modification with filters
+Modify your images in creative ways with cool filters.
