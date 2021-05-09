@@ -2,6 +2,7 @@ body {
   font-family: 'Helvetica Light', 'Arial';
   background-color: #E6E6E6;
   color: #4F36F5;
+  font-size: 16px;
 }
 
 
@@ -21,4 +22,9 @@ h2 {
 canvas {
   border: solid 0.5px;
   width: 500px;
+}
+
+#borderSize{
+  font-size: 14px;
+  padding: 0px 0px 0px 10px;
 }
