@@ -3,6 +3,8 @@ var grayImage = null;
 var redImage = null;
 var rainbowImage = null;
 var alphaImage = null;
+var blurredImage = null;
+var blank = null;
 var canvas = document.getElementById("canvas");
 
 function loadImage() {
@@ -11,6 +13,7 @@ function loadImage() {
   redImage = new SimpleImage(document.getElementById("ogimage"));
   rainbowImage = new SimpleImage(document.getElementById("ogimage"));
   alphaImage = new SimpleImage(document.getElementById("ogimage"));
+  blurredImage = new SimpleImage(document.getElementById("ogimage"));
   
   originalImage.drawTo(canvas);
 }
@@ -147,6 +150,52 @@ function makeRainbow() {
   }
 }
 
+function makeBlur() {
+  //alert("Blur");
+  
+  if (blurredImage == null || ! blurredImage.complete()) {
+    alert("Image has not loaded");
+  }
+  else {
+    blank = new SimpleImage(blurredImage.getWidth(), blurredImage.getHeight());
+    
+    for (var pixel of blank.values()) {   
+      // Draw random number between 0 and 1
+      var randNb = Math.random();
+        
+      if (randNb < 0.5){
+        // Set to pixel at position
+        ogPixel = blurredImage.getPixel(pixel.getX(), pixel.getY());
+      }
+      else {
+        // Set to random pixel in a 10 px radius
+        var randX = getRandomIntInclusive(pixel.getX(), 10);
+    
+          if (randX < 0){
+            randX = 0;
+          }
+          if (randX >= blurredImage.getWidth()){
+            randX = blurredImage.getWidth()-1;
+          }
+    
+        var randY = getRandomIntInclusive(pixel.getY(), 10);
+          if (randY < 0){
+            randY = 0;
+          }
+          if (randY >= blurredImage.getHeight()){
+            randY = blurredImage.getHeight()-1;
+          }
+            
+        ogPixel = blurredImage.getPixel(randX, randY);
+      }
+        
+      blank.setPixel(pixel.getX(), pixel.getY(), ogPixel);  
+
+    }
+    blank.drawTo(canvas);  
+  }
+}
+
 function resetImage() {
   //alert("Are you sure you want to reset?");
   originalImage.drawTo(canvas);
@@ -163,4 +212,10 @@ function colorPixel(c,avg){
   }
   
   return C
+}
+
+function getRandomIntInclusive(coordinate, radius) {
+  var min = Math.ceil(coordinate-radius);
+  var max = Math.floor(coordinate+radius);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
