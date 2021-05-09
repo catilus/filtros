@@ -1,12 +1,21 @@
 body {
-  margin: 50px 10px 10px 50px;
-  font-family: Comic Sans MS;
-  background-color: #D4FEF1;
+  font-family: 'Helvetica Light', 'Arial';
+  background-color: #E6E6E6;
   color: #4F36F5;
 }
 
-h1, h2 {
+
+h1 {
+  background-color: black;
+  color: white;
+  padding: 10px 10px 30px 20px;
+  font-weight: lighter;
+}
+
+h2 {
   color: #4F3697;
+  padding: 0px 10px 30px 10px;
+  font-weight: lighter;
 }
 
 canvas {
