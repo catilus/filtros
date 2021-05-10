@@ -36,12 +36,21 @@
   Apply transparent border:
   <p id="borderSize">
     Border size:
-    <input type="text" id="sizeInput"/>
-      
+    <input type="text" id="sizeInput"/>  
     <input type="button" onclick="makeAlphaBorder()" value="Transparent border"/>
   </p>
-  
 </p>
+
+<p>
+  Change brightness:
+  <p id="brightness">
+    Brightness ([-50; 50]):
+    <input type="text" id="brightnessInput"/> 
+    <input type="button" onclick="changeBrightness()" value="Brightness"/>
+    <!--<input type='range' min='-50' max='50' value='0' id='brightnessInput' oninput='changeBrightness(this.value)'/>-->
+  </p>  
+</p>
+
 
 <p>
   <input type="button" id="reset" onclick="resetImage()" value="Reset image"/>

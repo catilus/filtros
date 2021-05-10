@@ -4,7 +4,7 @@ var redImage = null;
 var rainbowImage = null;
 var alphaImage = null;
 var blurredImage = null;
-var blank = null;
+var brightImage = null;
 var canvas = document.getElementById("canvas");
 
 function loadImage() {
@@ -14,6 +14,7 @@ function loadImage() {
   rainbowImage = new SimpleImage(document.getElementById("ogimage"));
   alphaImage = new SimpleImage(document.getElementById("ogimage"));
   blurredImage = new SimpleImage(document.getElementById("ogimage"));
+  brightImage = new SimpleImage(document.getElementById("ogimage"));
   
   originalImage.drawTo(canvas);
 }
@@ -48,7 +49,32 @@ function makeRed() {
       pixel.setGreen(colorPixel(0, avg));
       pixel.setBlue(colorPixel(0, avg)); 
     }
-    redImage.drawTo(canvas);
+  redImage.drawTo(canvas);
+  }
+}
+
+function changeBrightness() {
+  //var brightImage = new SimpleImage(document.getElementById("ogimage"));
+  //brightImage = originalImage;
+  //originalImage.drawTo(canvas); 
+
+  if (brightImage == null || ! brightImage.complete()) {
+    alert("Image has not loaded");
+  }
+  else {
+    var amount = document.getElementById("brightnessInput").value;
+    
+    if (isNaN(amount)){
+      alert("Set a correct number.");
+    }
+    else{
+      for (var pixel of brightImage.values()){
+        pixel.setRed(pixel.getRed()+amount);
+        pixel.setGreen(pixel.getGreen()+amount);
+        pixel.setBlue(pixel.getBlue()+amount);
+      }
+    }
+  brightImage.drawTo(canvas);   
   }
 }
 
@@ -192,7 +218,7 @@ function makeBlur() {
       blank.setPixel(pixel.getX(), pixel.getY(), ogPixel);  
 
     }
-    blank.drawTo(canvas);  
+  blank.drawTo(canvas);  
   }
 }
 
