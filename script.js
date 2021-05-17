@@ -5,6 +5,7 @@ var rainbowImage = null;
 var alphaImage = null;
 var blurredImage = null;
 var brightImage = null;
+var negativeImage = null;
 var canvas = document.getElementById("canvas");
 
 function loadImage() {
@@ -15,6 +16,7 @@ function loadImage() {
   alphaImage = new SimpleImage(document.getElementById("ogimage"));
   blurredImage = new SimpleImage(document.getElementById("ogimage"));
   brightImage = new SimpleImage(document.getElementById("ogimage"));
+  negativeImage = new SimpleImage(document.getElementById("ogimage"));
   
   originalImage.drawTo(canvas);
 }
@@ -36,6 +38,22 @@ function makeGray() {
   }
 }
 
+function makeNegative() {
+  //alert("Negative");
+  
+  if (negativeImage == null || ! negativeImage.complete()) {
+    alert("Image has not loaded");
+  }
+  else {
+    for (var pixel of negativeImage.values()){
+        pixel.setRed(255-pixel.getRed());
+        pixel.setGreen(255-pixel.getGreen());
+        pixel.setBlue(255-pixel.getBlue());
+    }
+    negativeImage.drawTo(canvas);
+  }
+}
+
 function makeRed() {
   //alert("Red");
   if (redImage == null || ! redImage.complete()) {
@@ -54,8 +72,8 @@ function makeRed() {
 }
 
 function changeBrightness() {
-  //var brightImage = new SimpleImage(document.getElementById("ogimage"));
-  //brightImage = originalImage;
+  //brightImage = new SimpleImage(document.getElementById("ogimage"));
+  //var brightImage = originalImage;
   //originalImage.drawTo(canvas); 
 
   if (brightImage == null || ! brightImage.complete()) {
@@ -69,9 +87,9 @@ function changeBrightness() {
     }
     else{
       for (var pixel of brightImage.values()){
-        pixel.setRed(pixel.getRed()+amount);
-        pixel.setGreen(pixel.getGreen()+amount);
-        pixel.setBlue(pixel.getBlue()+amount);
+        pixel.setRed(pixel.getRed()*amount);
+        pixel.setGreen(pixel.getGreen()*amount);
+        pixel.setBlue(pixel.getBlue()*amount);
       }
     }
   brightImage.drawTo(canvas);   
